@@ -1,0 +1,538 @@
+.nav {
+  /*display: none;*/
+  margin-bottom: 30px;
+}
+
+.nav li {
+  display: inline-block;
+}
+
+body {
+  background: #f3f3f4;
+  color: #454545;
+  margin: 15px;
+}
+
+a {
+  color: #1c88c6;
+}
+
+.item-container {
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  background: #fff;
+  border-bottom: 1px solid #e3e3e6;
+  font-size: 85%;
+  position: relative;
+  list-style: none;
+  z-index: 1;
+  color: #7c7c7c;
+}
+
+.item::before {
+  position: absolute;
+  content: '';
+  width: 7px;
+  height: 100%;
+}
+
+.item.pending::before {
+  background: #f8ac59;
+}
+
+.item.running::before {
+  background: #1c84c6;
+}
+
+.item.passed::before {
+  background: #1ab394;
+}
+
+.item.failed::before {
+  background: #ed5565;
+}
+
+.item.active::before {
+  background: #d2d2d2;
+}
+
+.item.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+.item.active.pending::after {
+  background: #f8ac59;
+}
+
+.item.active.running::after {
+  background: #1c84c6;
+}
+
+.item.active.passed::after {
+  background: #1ab394;
+}
+
+.item.active.failed::after {
+  background: #ed5565;
+}
+
+.item > div > span {
+  display: inline-block;
+  vertical-align:middle;
+  line-height: 63px;
+  height: 63px;
+}
+
+.item > .timeStarted span {
+  overflow: hidden;
+}
+
+.item .changeId > span,
+.item .owner > span,
+.item .timeStarted > span,
+.item .status > span {
+  margin-left: 2em;
+}
+
+.timeStarted .time {
+  position: relative;
+  padding-left: 15px;
+}
+
+.timeStarted .time::before {
+  content: '';
+  background: url('../img/icon-clock.png') no-repeat;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13px;
+  height: 12px;
+}
+
+.item.pending .status {
+  color: #f8ac59;
+}
+
+.item.running .status {
+  color: #1c84c6;
+}
+
+.item.passed .status {
+  color: #1ab394;
+}
+
+.item.failed .status {
+  color: #ed5565;
+}
+
+.item .status::before {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  content: '';
+  left: 23px;
+  top: 5px;
+  display: inline-block;
+  background: url('../img/icon-status.png');
+}
+
+.item.pending .status::before {
+  background-position: 0 0;
+}
+.item.running .status::before {
+  background-position: 0 -18px;
+}
+.item.passed .status::before {
+  background-position: 0 -36px;
+}
+.item.failed .status::before {
+  background-position: 0 -53px;
+}
+
+.item .timeline {
+  position: relative;
+}
+
+.item .timeline span .icon {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  position: absolute;
+  top: 22%;
+  background: #e4e4e7;
+}
+
+.item .timeline .icon::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 15px;
+  height: 15px;
+  background: url('../img/icon-timeline.png') no-repeat;
+  background-position: 0 100px;
+}
+
+.item .timeline .icon.pending::before {
+  background-position: 0 0;
+}
+
+.item .timeline .icon.running::before {
+  background-position: 1px -17px;
+}
+
+.item .timeline .icon.passed::before {
+  background-position: -1px -31px;
+}
+
+.item .timeline .icon.failed::before {
+  background-position: 0 -46px;
+}
+
+.item .timeline span .icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid #e4e4e7;
+  border-radius: 50%;
+  left: -4px;
+  top: -4px;
+  z-index: -1;
+}
+
+.timeline span .build {
+  left: 0%;
+}
+
+.timeline span .unitTest {
+  left: 50%;
+  margin-left: -18px;
+}
+
+.timeline span .funcTest {
+  left: auto;
+  right: 0;
+}
+
+.timeline span .build.pending,
+.timeline span .unitTest.pending,
+.timeline span .funcTest.pending {
+  background: #f8ac59;
+}
+.timeline span .build.running,
+.timeline span .unitTest.running,
+.timeline span .funcTest.running {
+  background: #1c84c6;
+}
+.timeline span .build.passed,
+.timeline span .unitTest.passed,
+.timeline span .funcTest.passed {
+  background: #1ab394;
+}
+.timeline span .build.failed,
+.timeline span .unitTest.failed,
+.timeline span .funcTest.failed {
+  background: #ed5565;
+}
+
+.timeline .line-wrap {
+  width: 90%;
+  height: 10px;
+  background: #e4e4e7;;
+  position: absolute;
+  left: 13px;
+  top: 23px;
+  z-index: -1;
+}
+
+.timeline .line {
+  position: absolute;
+  width: 20%;
+  height: 4px;
+  background: #000;
+  top: 3px;
+  z-index: 6;
+}
+
+.timeline.pending .line {
+  background: #f8ac59;
+}
+
+.timeline.running .line {
+  background: #1c84c6;
+}
+
+.timeline.passed .line {
+  background: #1ab394;
+}
+
+.timeline.failed .line {
+  background: #ed5565;
+}
+
+.item-header {
+  font-weight: bold;
+}
+
+.item-header .timeline span .icon {
+  border: none;
+  width: auto;
+  height: auto;
+  top: 0;
+  background: none;
+}
+
+.item-header .timeline span .icon::after {
+  display: none;
+  border: none;
+}
+
+.item-header .timeline span .unitTest {
+  margin-left: -30px;
+}
+
+.item-header .timeline span .funcTest {
+  right: -30px;
+}
+
+.item .timeline span {
+  width: 80%;
+  position: relative;
+}
+
+.item-header .status::before {
+  background: none;
+  display: none;
+}
+
+.details {
+  display: none;
+  padding-top: 22px;
+  padding-bottom: 17px;
+  border-top: 1px solid #e3e3e6;
+
+  padding-left: 1.5em;
+  box-sizing: border-box;
+}
+
+.details-title .details-text {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.details-title .details-text::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('../img/icon-details.png');
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  left: 3px;
+}
+
+.details-title.failed .details-text::after {
+  background-position: 0 -18px;
+}
+
+.details-title.blocked .details-text::after {
+  background-position: 0 -36px;
+}
+
+.details-link {
+  position: relative;
+  padding-top: 40px;
+}
+
+.details-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3px;
+  width: 32px;
+  height: 30px;
+  background: url('../img/icon-folders.png');
+}
+
+.details-link.failed::before {
+  background-position: 0 -34px;
+}
+
+.percentage {
+  color: #c0c0c0;
+}
+
+.details-title.ok .percentage {
+  color: #1ab394;
+}
+
+.percentage span {
+  font-size: 150%;
+  padding-right: 3px;
+}
+
+.percentage span.testError {
+  font-size: 100%;
+  color: #454545;
+  display: none;
+  white-space: nowrap;
+  margin-left: 5px;
+}
+.percentage span.testError span {
+  font-size: 150%;
+  color: #ed5565;
+}
+
+.item.failed .pie {
+  display: none;
+}
+
+.pie canvas {
+  width: 66px;
+  height: 66px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.legend {
+  width: 50px;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 22px;
+  box-sizing: border-box;
+}
+
+.legend > div {
+  margin-bottom: 3px;
+}
+
+.item.failed .legend {
+  display: none;
+}
+
+.legend .passed,
+.legend .pending {
+  position: relative;
+}
+
+.legend .passed::before,
+.legend .pending::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #1ab394;
+  position: absolute;
+  left: -9px;
+  top: 4px;
+}
+
+.legend .pending::before {
+  background: #f8ac59;
+}
+
+.legend .time {
+  position: relative;
+  padding-left: 5px;
+}
+
+.legend .time::before {
+  content: '';
+  background: url('../img/icon-clock.png') no-repeat;
+  width: 13px;
+  height: 14px;
+  position: absolute;
+  left: -11px;
+  top: 0;
+  background-position: 0 -14px;
+}
+
+.bigstatus {
+  display: none;
+}
+
+.item.active .bigstatus {
+  display: block;
+  position: absolute;
+  height: 100%;
+  background: #f7f7f7;
+  top: 0;
+  width: 16.6667%;
+  outline: 1px solid #e5e8eb;
+  z-index: 1;
+}
+
+.item.active .bigstatus span {
+  margin: 0;
+  display: inline-block;
+  text-align: right;
+  font-size: 150%;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
+.item.active .bigstatus span::before {
+  content: '';
+  display: inline-block;
+  width: 23px;
+  height: 22px;
+  background: url('../img/icon-bigstatus.png');
+  position: relative;
+  top: 3px;
+}
+
+.item.active.running .bigstatus span::before {
+  background-position: 0 -26px;
+}
+
+.item.active.passed .bigstatus span::before {
+  background-position: 0 -52px;
+}
+
+.item.active.failed .bigstatus span::before {
+  background-position: 0 -77px;
+}
+
+
+@media screen and (max-width: 48em) {
+  .item-header {
+    display: none;
+  }
+  .timeline {
+    display: none;
+  }
+  .item.active .bigstatus {
+    display: none;
+  }
+
+  .details-unitTest,
+  .details-funcTest {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .changeId span::before {
+    content: 'Change ID: ';
+  }
+
+  .owner span::before {
+    content: 'Owner: ';
+  }
+  .timeStarted span::before {
+    content: 'Time Started: ';
+  }
+  .item > div > span {
+    line-height: 35px;
+    height: 35px;
+  }
+}
