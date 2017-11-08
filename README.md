@@ -4,6 +4,8 @@ Crossover demo
 
 Demo app built with Backbone.js
 
+<img src="https://raw.githubusercontent.com/rdxi/crossover-demo/master/crossover.jpg" width="600">
+
 ## Featuring
 - Backbone.js for client-side code structure.
 - Webpack with Babel-loader for building ES6 modules into single bundle.
